@@ -1,0 +1,11 @@
+#!/bin/sh
+
+# NG lint hook
+./node_modules/.bin/ng lint
+
+if [ $? -eq 0 ]; then
+  # printf "${GREEN}ESLint passed.${NC}\n"
+  exit 0 # all good, continue
+fi
+
+exit 1 # error occured
