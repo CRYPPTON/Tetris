@@ -1,0 +1,35 @@
+<mat-card class="game-dialog mat-elevation-z0">
+  <mat-icon class="{{ color }}">{{ icon }}</mat-icon>
+  <mat-card-content>
+    <div *ngIf="data.dialogType !== dialogType.unknown" class="game-result">{{"popup-content.result" | translate}}</div>
+    <div>{{ data.message }}</div>
+  </mat-card-content>
+  <div
+    *ngIf="
+      data.dialogType === dialogType.unknown;
+      then unknownErrorButton;
+      else gameButtons
+    "
+  ></div>
+</mat-card>
+
+<!-- an unknown error button set -->
+<ng-template #unknownErrorButton>
+  <mat-card-actions class="action-btns">
+    <button mat-raised-button color="primary" [mat-dialog-close]="true">
+      {{ "button.ok" | translate }}
+    </button>
+  </mat-card-actions>
+</ng-template>
+
+<!-- game error button set -->
+<ng-template #gameButtons>
+  <mat-card-actions *ngIf="data.dialogType !== 'unknown'" class="action-btns">
+    <button mat-raised-button color="primary" [mat-dialog-close]="true">
+      {{ "button.yes" | translate }}
+    </button>
+    <button mat-raised-button color="primary" [mat-dialog-close]="false">
+      {{ "button.no" | translate }}
+    </button>
+  </mat-card-actions>
+</ng-template>

@@ -1,3 +1,13 @@
 {
-  "title": "Tetris"
+  "title": "Tetris",
+  "popup-content": {
+    "message": "Da li zelite da zapocnete novu igru?",
+    "unknown": "Nepoznata greska?",
+    "result": "Rezultat"
+  },
+  "button": {
+    "yes": "Da",
+    "no": "Ne",
+    "ok": "U redu"
+  }
 }

@@ -1,3 +1,13 @@
 {
-  "title": "Tetris"
+  "title": "Tetris",
+  "popup-content": {
+    "message": "Do you want to play new game?",
+    "unknown": "An unknown error occurred?",
+    "result": "Score"
+  },
+  "button": {
+    "yes": "Yes",
+    "no": "No",
+    "ok": "Ok"
+  }
 }
