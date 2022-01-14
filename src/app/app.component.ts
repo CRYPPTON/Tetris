@@ -9,10 +9,6 @@ import { TranslateService } from '@ngx-translate/core';
 export class AppComponent {
   title = 'tetris';
   constructor(private translate: TranslateService) {
-
     translate.setDefaultLang('sr');
-
-
-
   }
 }

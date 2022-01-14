@@ -34,7 +34,6 @@ import { CoreModule } from './core/core.module';
 })
 export class AppModule { }
 
-
 // required for AOT compilation
 export function HttpLoaderFactory(http: HttpClient): TranslateHttpLoader {
   return new TranslateHttpLoader(http);
