@@ -8,6 +8,11 @@
   "button": {
     "yes": "Da",
     "no": "Ne",
-    "ok": "U redu"
+    "ok": "U redu",
+    "reset": "Resetuj"
+  },
+  "labels": {
+    "chooseColor": "Odaberite boju",
+    "points": "Poeni"
   }
 }

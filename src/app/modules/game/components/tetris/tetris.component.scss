@@ -1,0 +1,27 @@
+.setup {
+  display: flex;
+  text-align: center;
+  align-items: flex-start;
+
+  flex-direction: column;
+  justify-content: space-evenly;
+  align-items: center;
+
+  @media only screen and (max-width: 800px) {
+    flex-direction: row;
+  }
+}
+
+.combo-box {
+  width: 120px;
+}
+
+.game {
+  display: grid;
+  justify-items: center;
+  grid-template-columns: repeat(2, 1fr);
+
+  @media only screen and (max-width: 800px) {
+    grid-template-columns: repeat(1, 1fr);
+  }
+}

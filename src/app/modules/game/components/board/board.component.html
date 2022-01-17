@@ -1,0 +1,14 @@
+<div
+  class="game-board"
+  [ngClass]="isGameBoard ? 'big-board' : 'small-board'"
+>
+  <!-- create game board -->
+  <ng-container *ngFor="let row of [].constructor(borderSize); let i = index">
+    <ng-container
+      *ngFor="let field of [].constructor(borderSize); let j = index"
+    >
+      <!-- single board field -->
+      <button matRipple class="field"></button>
+    </ng-container>
+  </ng-container>
+</div>

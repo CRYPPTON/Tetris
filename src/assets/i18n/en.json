@@ -8,6 +8,11 @@
   "button": {
     "yes": "Yes",
     "no": "No",
-    "ok": "Ok"
+    "ok": "Ok",
+    "reset": "Reset"
+  },
+  "labels": {
+    "chooseColor": "Choose color",
+    "points": "Points"
   }
 }
