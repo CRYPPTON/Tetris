@@ -1,4 +1,6 @@
 export enum DialogType {
-  game = 'game',
+  endGame = 'game',
+  boardError = 'boardError',
+  collisionError = 'collisionError',
   unknown = 'unknown'
 }

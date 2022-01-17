@@ -1,13 +1,13 @@
 <div class="container">
   <div class="game justify-content-between pl-2">
     <div class="board">
-      <div class="p-2">{{"labels.points" | translate}}</div>
+      <div class="p-2">{{"labels.points" | translate}}: {{score}}</div>
       <!-- game board -->
-      <app-board [isGameBoard]="true" [borderSize]="10"></app-board>
+      <app-board [isGameBoard]="true" [borderSize]="gameBoardSize"></app-board>
     </div>
     <div class="setup">
       <!-- shape board -->
-      <app-board [isGameBoard]="false" [borderSize]="4"></app-board>
+      <app-board [isGameBoard]="false" [borderSize]="smallBoardSize"></app-board>
 
       <mat-form-field class="combo-box" appearance="fill">
         <mat-label>{{ "labels.chooseColor" | translate }}</mat-label>
@@ -18,7 +18,7 @@
         </mat-select>
       </mat-form-field>
       <div class="p-2">
-        <button mat-raised-button color="primary">
+        <button (click)="onReset()" mat-raised-button color="primary">
           {{ "button.reset" | translate }}
         </button>
       </div>

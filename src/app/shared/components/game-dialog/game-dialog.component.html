@@ -1,12 +1,14 @@
 <mat-card class="game-dialog mat-elevation-z0">
   <mat-icon class="{{ color }}">{{ icon }}</mat-icon>
   <mat-card-content>
-    <div *ngIf="data.dialogType !== dialogType.unknown" class="game-result">{{"popup-content.result" | translate}}</div>
+    <div *ngIf="data.dialogType === dialogType.endGame
+
+    " class="game-result">{{"popup-content.result" | translate}}: {{score}}</div>
     <div>{{ data.message }}</div>
   </mat-card-content>
   <div
     *ngIf="
-      data.dialogType === dialogType.unknown;
+      data.dialogType !== dialogType.endGame;
       then unknownErrorButton;
       else gameButtons
     "

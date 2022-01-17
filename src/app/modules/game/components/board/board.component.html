@@ -8,7 +8,15 @@
       *ngFor="let field of [].constructor(borderSize); let j = index"
     >
       <!-- single board field -->
-      <button matRipple class="field"></button>
+      <button
+        (click)="onPlay(i, j)"
+        matRipple
+        [disabled]="isGameOver"
+        class="field"
+        [ngClass]="[!isGameBoard && playerBoard[i][j] ? currentColor :
+        isGameBoard && tetrisMatrix[i][j] ? tetrisMatrix[i][j] :
+        '']"
+      >{{i}},{{j}}</button>
     </ng-container>
   </ng-container>
 </div>

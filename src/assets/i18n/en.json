@@ -1,9 +1,11 @@
 {
   "title": "Tetris",
   "popup-content": {
-    "message": "Do you want to play new game?",
-    "unknown": "An unknown error occurred?",
-    "result": "Score"
+    "end-game": "Do you want to play new game?",
+    "board-error": "Field across the boundaries of the game!",
+    "collision-error": "It can't fit in here!",
+    "unknown": "An unknown error occurred!",
+    "result": "Your score"
   },
   "button": {
     "yes": "Yes",

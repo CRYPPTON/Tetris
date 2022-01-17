@@ -9,6 +9,7 @@
 
   @media only screen and (max-width: 800px) {
     flex-direction: row;
+    width: 100%;
   }
 }
 
@@ -20,6 +21,7 @@
   display: grid;
   justify-items: center;
   grid-template-columns: repeat(2, 1fr);
+  padding: 0;
 
   @media only screen and (max-width: 800px) {
     grid-template-columns: repeat(1, 1fr);

@@ -1,9 +1,11 @@
 {
   "title": "Tetris",
   "popup-content": {
-    "message": "Da li zelite da zapocnete novu igru?",
+    "end-game": "Da li zelite da zapocnete novu igru?",
     "unknown": "Nepoznata greska?",
-    "result": "Rezultat"
+    "board-error": "Polje premasuje granice igre!",
+    "collision-error": "Ne moze se smestiti ovde!",
+    "result": "Vas rezultat"
   },
   "button": {
     "yes": "Da",

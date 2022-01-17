@@ -3,6 +3,7 @@
   height: 600px;
   width: 600px;
   padding: 10px;
+  justify-content: space-around;
 
   @media only screen and (max-width: 900px) {
     height: 500px;
@@ -27,7 +28,7 @@
   height: 100%;
   width: 100%;
   background-color: rgb(241, 241, 241);
-  font-size: 12px;
+  // font-size: 12px;
   font-weight: 900;
 
   border: solid 1px black;
@@ -69,4 +70,17 @@
 
   grid-template-columns: repeat(4, 1fr);
   grid-template-rows: repeat(4, 1fr);
+}
+
+
+.red {
+  background-color: red;
+}
+
+.blue {
+  background-color: blue;
+}
+
+.green {
+  background-color: green;
 }

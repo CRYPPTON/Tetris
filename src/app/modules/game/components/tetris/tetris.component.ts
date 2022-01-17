@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { MatSelectChange } from '@angular/material/select';
 import { GameColor } from '@app-enums';
+import { GameEngineService } from 'src/app/core/services';
 
 @Component({
   selector: 'app-tetris',
@@ -14,9 +15,21 @@ export class TetrisComponent {
   gameColors = ['red', 'blue', 'green'];
   selectedColor: GameColor;
 
+  get gameBoardSize(): number {
+    return this.gameEngineService.gameBoardSize;
+  }
+
+  get smallBoardSize(): number {
+    return this.gameEngineService.smallBoardSize;
+  }
+
+  get score(): number {
+    return this.gameEngineService.score;
+  }
+
   //#endregion
 
-  constructor() {}
+  constructor(private gameEngineService: GameEngineService) {}
 
   //#region UI events
 
@@ -26,7 +39,11 @@ export class TetrisComponent {
      */
   public onSetColor(events: MatSelectChange): void {
     this.selectedColor = events.value;
-    // set color ...
+    this.gameEngineService.setColor(this.selectedColor);
+  }
+
+  public onReset(): void {
+    this.gameEngineService.reset();
   }
 
   //#endregion
