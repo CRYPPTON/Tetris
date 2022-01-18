@@ -1,4 +1,4 @@
-import { DialogType } from "src/app/shared/enums";
+import { DialogType } from "@app-enums";
 
 export class GamePopupHandlerError extends Error {
   constructor(message: string, public dialogType: DialogType) {

@@ -2,7 +2,7 @@ import { Component, Inject } from '@angular/core';
 import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { DialogType } from '@app-enums';
 import { PopupDataType } from '@app-models';
-import { GameEngineService } from 'src/app/core/services';
+import { GameEngineService } from '@app-services';
 
 @Component({
   selector: 'app-game-dialog',

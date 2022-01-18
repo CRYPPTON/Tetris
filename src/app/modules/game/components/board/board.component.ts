@@ -1,6 +1,6 @@
 import { AfterViewInit, Component, Input } from '@angular/core';
-import { GameEngineService } from 'src/app/core/services';
-import { GameColor } from 'src/app/shared/enums';
+import { GameEngineService } from '@app-services';
+import { GameColor } from '@app-enums';
 
 @Component({
   selector: 'app-board',

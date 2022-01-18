@@ -1,4 +1,4 @@
-import { DialogType } from "../enums/dialog-type";
+import { DialogType } from "@app-enums";
 
 export interface PopupDataType {
   message: string;

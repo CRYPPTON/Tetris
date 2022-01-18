@@ -15,7 +15,7 @@
   ></div>
 </mat-card>
 
-<!-- an unknown error button set -->
+<!-- error button set -->
 <ng-template #unknownErrorButton>
   <mat-card-actions class="action-btns">
     <button mat-raised-button color="primary" [mat-dialog-close]="true">
@@ -24,7 +24,7 @@
   </mat-card-actions>
 </ng-template>
 
-<!-- game error button set -->
+<!-- end game button set -->
 <ng-template #gameButtons>
   <mat-card-actions *ngIf="data.dialogType !== 'unknown'" class="action-btns">
     <button mat-raised-button color="primary" [mat-dialog-close]="true">

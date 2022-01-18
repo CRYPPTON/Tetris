@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { DialogType, GameColor } from '@app-enums';
 import { TranslateService } from '@ngx-translate/core';
-import { GamePopupHandlerError } from '../popups-handlers';
+import { GamePopupHandlerError } from '@app-popup-handlers';
 
 @Injectable({
   providedIn: 'root'
@@ -32,15 +32,6 @@ export class GameEngineService {
 
   public play(row: number, column: number): void {
 
-    //  this.isGameOver = this.checkEndGame();
-
-    // if(this.isGameOver) {
-    //   throw new GamePopupHandlerError(
-    //     this.translationService.instant('popup-content.end-game'),
-    //     DialogType.endGame
-    //   )
-    // }
-
     let isCollision = this.checkCollision(row, column);
 
     if (isCollision) {
@@ -56,6 +47,14 @@ export class GameEngineService {
     this.score += this.currentShapePiecesNumber;
 
     this.generateRandomShape();
+
+    this.isGameOver = this.checkEndGame();
+
+    if (this.isGameOver) {
+      throw new GamePopupHandlerError(
+        this.translationService.instant('popup-content.end-game'),
+        DialogType.endGame);
+    }
   }
 
   public reset(): void {
@@ -117,6 +116,7 @@ export class GameEngineService {
 
     if (numberOfPieces == 0) {
       numberOfPieces = 1;
+      this.currentShapePiecesNumber = numberOfPieces;
     }
     while (numberOfPieces > 0) {
       let row = this.randomNumber(this.smallBoardSize);
@@ -140,6 +140,12 @@ export class GameEngineService {
     return Math.floor(Math.random() * end);
   }
 
+  /**
+   * Return true if some pieces in matrix is overlap or fit outside game matrix.
+   * @param row a number that represent selected row.
+   * @param column a number that represent selected column.
+   * @returns a logical data type - boolean.
+   */
   private checkCollision(row: number, column: number): boolean {
     for (let i = 0; i < this.smallBoardSize; i++) {
       for (let j = 0; j < this.smallBoardSize; j++) {
@@ -157,24 +163,30 @@ export class GameEngineService {
     return false;
   }
 
+  /**
+   * Returns true if there is no more space to set the shape.
+   * @returns a logical data type - true/false;
+   */
   private checkEndGame(): boolean {
-  //   let isCollision: boolean = true;
-
-  //   for (let i = 0; i < this.gameBoardSize; i++) {
-  //     for (let j = 0; j < this.gameBoardSize; j++) {
-  //       console.log(i,j)
-  //       if(this.playMatrix[i][j]) {
-  //        isCollision = this.checkCollision(i, j);
-  //       }
-  //     }
-  //     if(!isCollision) {
-  //       return false;
-  //     }
-  //   }
-
+    for (let i = 0; i < this.gameBoardSize; i++) {
+      for (let j = 0; j < this.gameBoardSize; j++) {
+        try {
+          if (!this.checkCollision(i, j)) {
+            return false;
+          }
+        } catch (error) {
+          continue;
+        }
+      }
+    }
     return true;
   }
 
+  /**
+   * Set game shape in tetris matrix.
+   * @param row a number that represent row for set.
+   * @param column a number that represent column for set.
+   */
   private setTetrisMatrix(row: number, column: number): void {
     for (let i = 0; i < this.smallBoardSize; i++) {
       for (let j = 0; j < this.smallBoardSize; j++) {

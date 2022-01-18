@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { MatSelectChange } from '@angular/material/select';
 import { GameColor } from '@app-enums';
-import { GameEngineService } from 'src/app/core/services';
+import { GameEngineService } from '@app-services';
 
 @Component({
   selector: 'app-tetris',
