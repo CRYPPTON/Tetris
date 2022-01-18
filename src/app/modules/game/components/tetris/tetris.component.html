@@ -1,13 +1,31 @@
 <div class="container">
   <div class="game justify-content-between pl-2">
     <div class="board">
-      <div class="p-2">{{"labels.points" | translate}}: {{score}}</div>
+      <div class="header d-flex">
+        {{ "labels.points" | translate }}: {{ score }}
+        <button
+          (click)="onHint()"
+          [disabled]="gameOver || hintNumber <= 0"
+          mat-raised-button
+          color="accent"
+        >
+          {{ "button.hint" | translate }} {{ hintNumber }}
+        </button>
+      </div>
       <!-- game board -->
-      <app-board [isGameBoard]="true" [borderSize]="gameBoardSize"></app-board>
+      <app-board
+        [isGameBoard]="true"
+        [isHint]="isHint"
+        (hintEvent)="changeHint($event)"
+        [borderSize]="gameBoardSize"
+      ></app-board>
     </div>
     <div class="setup">
       <!-- shape board -->
-      <app-board [isGameBoard]="false" [borderSize]="smallBoardSize"></app-board>
+      <app-board
+        [isGameBoard]="false"
+        [borderSize]="smallBoardSize"
+      ></app-board>
 
       <mat-form-field class="combo-box" appearance="fill">
         <mat-label>{{ "labels.chooseColor" | translate }}</mat-label>

@@ -16,7 +16,7 @@
         [ngClass]="[!isGameBoard && playerBoard[i][j] ? currentColor :
         isGameBoard && tetrisMatrix[i][j] ? tetrisMatrix[i][j] :
         '']"
-      ></button>
+      >{{i}},{{j}}</button>
     </ng-container>
   </ng-container>
 </div>

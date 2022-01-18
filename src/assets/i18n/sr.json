@@ -11,7 +11,8 @@
     "yes": "Da",
     "no": "Ne",
     "ok": "U redu",
-    "reset": "Resetuj"
+    "reset": "Resetuj",
+    "hint": "Pomoc"
   },
   "labels": {
     "chooseColor": "Odaberite boju",

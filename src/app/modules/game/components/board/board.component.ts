@@ -1,18 +1,21 @@
-import { AfterViewInit, Component, Input } from '@angular/core';
+import { AfterViewInit, Component, EventEmitter, Input, OnChanges, Output } from '@angular/core';
 import { GameEngineService } from '@app-services';
 import { GameColor } from '@app-enums';
+import { Hint } from 'src/app/shared/models';
 
 @Component({
   selector: 'app-board',
   templateUrl: './board.component.html',
   styleUrls: ['./board.component.scss']
 })
-export class BoardComponent implements AfterViewInit {
+export class BoardComponent implements AfterViewInit, OnChanges {
 
   //#region Angular stuff
 
   @Input() borderSize: number;
   @Input() isGameBoard: boolean;
+  @Input() isHint: boolean;
+  @Output() hintEvent = new EventEmitter<boolean>();
 
   //#endregion
 
@@ -34,14 +37,35 @@ export class BoardComponent implements AfterViewInit {
     return this.gameEngineService.isGameOver;
   }
 
+  get hint(): Hint {
+    return this.gameEngineService.hint;
+  }
+
   //#endregion
 
   constructor(private gameEngineService: GameEngineService) { }
 
-//#region Life Cycle hooks
+  //#region Life Cycle hooks
 
   ngAfterViewInit(): void {
     this.setGrid();
+  }
+
+  ngOnChanges(): void {
+
+    if (this.isHint) {
+
+      let row = this.hint.row;
+      let column = this.hint.column;
+      let colorBeforeHint = this.tetrisMatrix[row][column];
+
+      this.tetrisMatrix[row][column] = GameColor.black;
+      setTimeout(() => {
+        this.tetrisMatrix[row][column] = colorBeforeHint!;
+        this.hintEvent.emit(false);
+      }, 1000);
+    }
+
   }
 
   //#endregion

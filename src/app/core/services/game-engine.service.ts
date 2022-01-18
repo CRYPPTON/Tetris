@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { DialogType, GameColor } from '@app-enums';
 import { TranslateService } from '@ngx-translate/core';
 import { GamePopupHandlerError } from '@app-popup-handlers';
+import { Hint } from '@app-models';
 
 @Injectable({
   providedIn: 'root'
@@ -21,6 +22,10 @@ export class GameEngineService {
   currentColor: GameColor;
   score: number;
   isGameOver: boolean;
+
+  hint: Hint;
+  hintNumber: number;
+  hintList: Hint[];
 
   //#endregion
 
@@ -55,6 +60,11 @@ export class GameEngineService {
         this.translationService.instant('popup-content.end-game'),
         DialogType.endGame);
     }
+
+    this.calculateBestHint();
+
+    this.hintList = [];
+
   }
 
   public reset(): void {
@@ -71,6 +81,9 @@ export class GameEngineService {
     this.currentColor = GameColor.red;
     this.score = 0;
     this.isGameOver = false;
+    this.hint = { row: 0, column: 0 };
+    this.hintNumber = 20;
+    this.hintList = [];
 
     this.tetrisMatrix = this.createBoard(this.gameBoardSize);
     this.playMatrix = this.createBoard(this.smallBoardSize);
@@ -91,6 +104,10 @@ export class GameEngineService {
         }
       }
     }
+  }
+
+  public decreaseHintNumber(): void {
+    this.hintNumber--;
   }
 
   /**
@@ -172,14 +189,48 @@ export class GameEngineService {
       for (let j = 0; j < this.gameBoardSize; j++) {
         try {
           if (!this.checkCollision(i, j)) {
-            return false;
+            this.pushHint(this.hint = { row: i, column: j });
+            //this.hint = { row: i, column: j };
+
           }
         } catch (error) {
           continue;
         }
       }
     }
+    if (this.hintList.length != 0) {
+      return false;
+    }
+
     return true;
+  }
+
+  private pushHint(hint: Hint): void {
+    this.hintList.push(hint)
+  }
+
+  private calculateBestHint(): void {
+    let bestHintList = [];
+
+    let count;
+    for (let i = 0; i < this.hintList.length; i++) {
+      count = 0;
+      for (let j = 0; j < this.smallBoardSize; j++) {
+        for (let k = 0; k < this.smallBoardSize; k++) {
+          try {
+            if (this.tetrisMatrix[this.hintList[i].row + j][this.hintList[i].column + k]) {
+              count++;
+            }
+          } catch (error) {
+            continue;
+          }
+        }
+      }
+      bestHintList.push(count);
+    }
+
+    let indexOfMax = bestHintList.indexOf(Math.max.apply(null, bestHintList));
+    this.hint = this.hintList[indexOfMax];
   }
 
   /**

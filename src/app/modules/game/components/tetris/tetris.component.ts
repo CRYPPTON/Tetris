@@ -15,6 +15,12 @@ export class TetrisComponent {
   gameColors = ['red', 'blue', 'green'];
   selectedColor: GameColor;
 
+  isHint: boolean;
+
+  get hintNumber(): number {
+    return this.gameEngineService.hintNumber;
+  }
+
   get gameBoardSize(): number {
     return this.gameEngineService.gameBoardSize;
   }
@@ -27,9 +33,13 @@ export class TetrisComponent {
     return this.gameEngineService.score;
   }
 
+  get gameOver(): boolean {
+    return this.gameEngineService.isGameOver;
+  }
+
   //#endregion
 
-  constructor(private gameEngineService: GameEngineService) {}
+  constructor(private gameEngineService: GameEngineService) { }
 
   //#region UI events
 
@@ -44,6 +54,15 @@ export class TetrisComponent {
 
   public onReset(): void {
     this.gameEngineService.reset();
+  }
+
+  public onHint(): void {
+    this.isHint = true;
+    this.gameEngineService.decreaseHintNumber();
+  }
+
+  public changeHint(isHint: boolean): void {
+    this.isHint = isHint;
   }
 
   //#endregion
