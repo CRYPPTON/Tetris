@@ -61,10 +61,9 @@ export class TetrisComponent {
     this.gameEngineService.decreaseHintNumber();
   }
 
+  //#endregion
+
   public changeHint(isHint: boolean): void {
     this.isHint = isHint;
   }
-
-  //#endregion
-
 }

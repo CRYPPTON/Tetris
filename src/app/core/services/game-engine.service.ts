@@ -82,7 +82,7 @@ export class GameEngineService {
     this.score = 0;
     this.isGameOver = false;
     this.hint = { row: 0, column: 0 };
-    this.hintNumber = 20;
+    this.hintNumber = 3;
     this.hintList = [];
 
     this.tetrisMatrix = this.createBoard(this.gameBoardSize);
@@ -190,8 +190,6 @@ export class GameEngineService {
         try {
           if (!this.checkCollision(i, j)) {
             this.pushHint(this.hint = { row: i, column: j });
-            //this.hint = { row: i, column: j };
-
           }
         } catch (error) {
           continue;
@@ -211,17 +209,21 @@ export class GameEngineService {
 
   private calculateBestHint(): void {
     let bestHintList = [];
-
     let count;
+
     for (let i = 0; i < this.hintList.length; i++) {
       count = 0;
       for (let j = 0; j < this.smallBoardSize; j++) {
         for (let k = 0; k < this.smallBoardSize; k++) {
           try {
-            if (this.tetrisMatrix[this.hintList[i].row + j][this.hintList[i].column + k]) {
+            let row = this.hintList[i].row + j;
+            let column = this.hintList[i].column + k;
+
+            if (this.tetrisMatrix[row][column]) {
               count++;
             }
-          } catch (error) {
+          }
+          catch (error) {
             continue;
           }
         }
